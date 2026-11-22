@@ -1,0 +1,218 @@
+Issue Id,Issue Type,Summary,Description,Priority,Status,Parent,Link "Relates",Link "Blocks",Labels
+1,Epic,"Plan de Pruebas - Módulo 01: Pantalla de Bienvenida y Navegación","Ciclo de pruebas funcionales y visuales para la portada futurista de ELECTROTECH, logotipo hexagonal, escaparate 3D interactivo, carrusel de testimonios y ruta /api/health (v1.0).",High,Done,,,,"ELECTROTECH-Modulo01"
+2,Epic,"Plan de Pruebas - Módulo 02: Login, Registro y Control de Roles (RBAC)","Pruebas de autenticación JWT + bcrypt, validaciones de correo y campos vacíos, recuperación de contraseña, registro de clientes, recordar sesión y protección de rutas privadas según rol (Administrador y Cliente).",Highest,Done,,,,"ELECTROTECH-Modulo02"
+3,Epic,"Plan de Pruebas - Módulo 03: Dashboard Administrativo y Analítica","Validación de los 7 indicadores KPI reales desde SQLite (18 productos, 5 clientes, 8 ventas, ingresos, 3 alertas de stock bajo), gráficos Chart.js, reposición de inventario y registro de nuevos artefactos.",High,Done,,,,"ELECTROTECH-Modulo03"
+4,Epic,"Plan de Pruebas - Módulo 04: Catálogo de Productos, Búsqueda y Filtros","Pruebas del catálogo de 18 productos y 9 categorías, búsqueda inmediata por nombre o descripción, filtros por categoría y marca, ordenamiento, paginación y modal de detalle técnico.",High,Done,,,,"ELECTROTECH-Modulo04"
+5,Epic,"Plan de Pruebas - Módulo 05: Carrito de Compras, Drawer Lateral y Checkout","Pruebas de agregar/incrementar/disminuir/eliminar productos, drawer lateral deslizable, validación estricta de inventario en servidor y confirmación transaccional ACID de pedidos con descuento de stock.",Highest,Done,,,,"ELECTROTECH-Modulo05"
+6,Epic,"Plan de Pruebas - Módulo 06: Footer Huancayo, SEO Técnico y Rendimiento","Validación del pie de página (Calle Real 640 Huancayo, +51 914356362), metadatos SEO/OpenGraph/JSON-LD, /robots.txt, /sitemap.xml, code splitting y carga eager/lazy de imágenes.",Medium,Done,,,,"ELECTROTECH-Modulo06"
+7,Story,"Como visitante quiero explorar la bienvenida futurista, escaparate 3D y testimonios para conocer ELECTROTECH","Verificar disponibilidad del sistema (/api/health), renderizado del título degradado, botones principales de acción y carrusel interactivo de experiencias reales.",High,Done,1,,,"ELECTROTECH-Modulo01"
+8,Story,"Como usuario quiero iniciar sesión, registrarme o recuperar mi clave para acceder según mi rol","Permitir acceso diferenciado a Cliente (compra) y Administrador (dashboard), bloqueando rutas privadas a usuarios no autorizados (401/403).",Highest,Done,2,,,"ELECTROTECH-Modulo02"
+9,Story,"Como administrador quiero ver KPIs reales, gráficos Chart.js y gestionar stock/productos en el Dashboard","Consultar ventas mensuales, ranking de productos más vendidos, alertas de stock bajo y ejecutar reposiciones o altas de inventario en tiempo real.",High,Done,3,,,"ELECTROTECH-Modulo03"
+10,Story,"Como comprador quiero buscar productos por nombre/descripción y filtrar por 9 categorías y marca","Explorar las 9 líneas de hardware electrónico, verificar precios promocionales, stock disponible y ficha técnica detallada.",High,Done,4,,,"ELECTROTECH-Modulo04"
+11,Story,"Como cliente quiero gestionar mi compra desde el drawer lateral y confirmar pedidos validando stock","Evitar duplicados en carrito, impedir cantidades negativas o superiores al inventario (400/409) y generar código de pedido ET-*.",Highest,Done,5,,,"ELECTROTECH-Modulo05"
+12,Story,"Como usuario y buscador quiero acceder al footer de Huancayo, carga rápida y metadatos SEO","Validar enlaces rápidos, contacto +51 914356362 en Calle Real 640 Huancayo, robots.txt, sitemap.xml y prioridad de carga LCP.",Medium,Done,6,,,"ELECTROTECH-Modulo06"
+13,Task,"TC01 - Validar Ruta de Salud del Servidor ELECTROTECH","[Precondiciones]
+1. Servidor Express + SQLite iniciado en el puerto 3000.
+2. Base de datos inicializada con la semilla de 18 productos.
+
+[Pasos de Ejecución]
+1. Enviar petición HTTP GET a /api/health.
+2. Inspeccionar el código de estado y el cuerpo JSON devuelto.
+
+[Resultado Esperado]
+El servidor responde HTTP 200 con { ok: true, app: 'ELECTROTECH', productos: 18 } (>= 18).",High,Done,1,7,,"ELECTROTECH-TC01"
+14,Task,"TC02 - Validar Pantalla de Bienvenida, Logotipo, Escaparate 3D y Testimonios","[Precondiciones]
+1. Navegador Google Chrome (resolución 1440x900).
+2. Usuario accede a la ruta raíz '/' de ELECTROTECH.
+
+[Pasos de Ejecución]
+1. Cargar la pantalla principal de bienvenida.
+2. Verificar la presencia del logotipo hexagonal ELECTROTECH y el título principal.
+3. Interactuar con las pestañas del escaparate 3D (Ecosistema, Laptops, Smartphones, Televisores).
+4. Desplazarse al carrusel de testimonios y pulsar 'Siguiente testimonio' / 'Testimonio anterior'.
+
+[Resultado Esperado]
+Se muestra el título 'EL FUTURO DE LA TECNOLOGÍA ESTÁ AQUÍ', descripción corporativa, botones 'Explorar productos', 'Iniciar sesión', enlace '#nuestra-tienda' y carrusel operativo. Evidencia: docs/screenshots/01_pantalla_bienvenida.png",High,Done,1,7,,"ELECTROTECH-TC02"
+15,Task,"TC03 - Validar Inicio de Sesión Exitoso (Administrador y Cliente)","[Precondiciones]
+1. Usuarios registrados en BD: admin@electrotech.pe y cliente@electrotech.pe.
+2. Navegador Google Chrome.
+
+[Pasos de Ejecución]
+1. Ingresar a la vista 'Iniciar sesión' de ELECTROTECH.
+2. Escribir correo: admin@electrotech.pe y contraseña: Admin2026!.
+3. Marcar 'Recordar sesión' y hacer clic en 'Iniciar sesión'.
+4. Cerrar sesión y repetir con cliente@electrotech.pe / Cliente2026!.
+
+[Resultado Esperado]
+POST /api/auth/login devuelve HTTP 200 y token JWT. El Administrador es redirigido al Dashboard y el Cliente al Catálogo o Carrito. Evidencia: docs/screenshots/05_login_roles.png",Highest,Done,2,8,,"ELECTROTECH-TC03"
+16,Task,"TC04 - Validar Rechazo de Inicio de Sesión con Contraseña Incorrecta","[Precondiciones]
+1. Usuario admin@electrotech.pe existente en base de datos.
+
+[Pasos de Ejecución]
+1. Ingresar a la vista 'Iniciar sesión'.
+2. Escribir correo: admin@electrotech.pe.
+3. Escribir contraseña errónea: ClaveIncorrecta999.
+4. Hacer clic en 'Iniciar sesión'.
+
+[Resultado Esperado]
+El backend responde HTTP 401 (No autorizado) y la interfaz muestra alerta clara sin crear sesión ni token.",High,Done,2,8,,"ELECTROTECH-TC04"
+17,Task,"TC05 - Validar Campos Vacíos y Formato de Correo Electrónico en Login","[Precondiciones]
+1. Pantalla de 'Iniciar sesión' abierta.
+
+[Pasos de Ejecución]
+1. Hacer clic en 'Iniciar sesión' dejando correo y contraseña vacíos.
+2. Escribir correo con formato inválido ('correo-invalido') y una contraseña válida.
+3. Intentar enviar el formulario.
+
+[Resultado Esperado]
+El sistema bloquea el envío y el endpoint devuelve HTTP 400 indicando correo electrónico inválido o campos obligatorios faltantes.",Medium,Done,2,8,,"ELECTROTECH-TC05"
+18,Task,"TC06 - Validar Restricción de Rutas Privadas por Rol (RBAC)","[Precondiciones]
+1. Usuario sin autenticar o autenticado con rol 'Cliente' (cliente@electrotech.pe).
+
+[Pasos de Ejecución]
+1. Realizar petición GET /api/admin/dashboard sin cabecera Authorization.
+2. Iniciar sesión como Cliente (rol = 'Cliente').
+3. Realizar petición GET /api/admin/dashboard enviando el JWT del Cliente.
+
+[Resultado Esperado]
+Sin token el servidor responde HTTP 401; con token de Cliente responde HTTP 403 (Acceso prohibido solo para Administrador).",Highest,Done,2,8,,"ELECTROTECH-TC06"
+19,Task,"TC07 - Validar Registro de Cliente, Recuperación de Contraseña y Cierre de Sesión","[Precondiciones]
+1. Correo andrea.qa@correo.pe no registrado previamente.
+
+[Pasos de Ejecución]
+1. Cambiar a modo '¿No tienes cuenta? Regístrate como Cliente' y enviar nombre, correo y clave Password2026!.
+2. Usar '¿Olvidaste tu contraseña?' para andrea.qa@correo.pe y actualizar a NewPassword2026!.
+3. Hacer clic en el botón 'Salir' de la barra superior.
+
+[Resultado Esperado]
+El registro devuelve HTTP 201 con rol 'Cliente', la recuperación actualiza la clave con bcrypt (HTTP 200) y el cierre de sesión limpia el token (HTTP 200).",High,Done,2,8,,"ELECTROTECH-TC07"
+20,Task,"TC08 - Validar Carga de Indicadores KPI Reales y Gráficos en Dashboard","[Precondiciones]
+1. Sesión iniciada con rol Administrador (admin@electrotech.pe / Admin2026!).
+
+[Pasos de Ejecución]
+1. Acceder a la pestaña 'Dashboard' en la barra de navegación.
+2. Esperar la respuesta de GET /api/admin/dashboard.
+3. Revisar las 7 tarjetas estadísticas, gráficos Chart.js y tabla de últimos pedidos.
+
+[Resultado Esperado]
+Muestra datos reales de BD: Total productos (18), Total clientes (5), Ventas realizadas (8), Ingresos totales ($26,988.00), Disponibles (18), Stock bajo (3) y Pedidos (8), más gráficos Chart.js. Evidencia: docs/screenshots/06_dashboard_admin.png",High,Done,3,9,,"ELECTROTECH-TC08"
+21,Task,"TC09 - Validar Reposición de Inventario y Alta de Nuevo Producto (Admin)","[Precondiciones]
+1. Sesión activa como Administrador en la sección 'Inventario y Catálogo' del Dashboard.
+
+[Pasos de Ejecución]
+1. Actualizar el stock del producto ID 1 (ElectroBook Pro 16) a 30 unidades mediante el control de reposición.
+2. Completar el formulario de nuevo producto (MacBook Air M4 15, modelo MBA15-M4-2026, precio $1,699, stock 12) y guardar.
+
+[Resultado Esperado]
+PATCH /api/admin/inventory/1 responde HTTP 200 con stock_actual = 30. POST /api/admin/products responde HTTP 201 y refleja el nuevo producto en el catálogo.",High,Done,3,9,,"ELECTROTECH-TC09"
+22,Task,"TC10 - Validar Listado Completo de Productos y 9 Categorías","[Precondiciones]
+1. Base de datos sembrada con 9 categorías y 18 artefactos electrónicos.
+
+[Pasos de Ejecución]
+1. Ingresar a la pestaña 'Catálogo'.
+2. Verificar las pestañas de categorías disponibles y el contador total de productos.
+
+[Resultado Esperado]
+Se muestran las 9 categorías (Laptops, Computadoras, Smartphones, Tablets, Televisores, Impresoras, Parlantes y audífonos, Accesorios tecnológicos, Componentes de PC) y los 18 productos registrados. Evidencia: docs/screenshots/03_catalogo_productos.png",High,Done,4,10,,"ELECTROTECH-TC10"
+23,Task,"TC11 - Validar Búsqueda Instantánea y Filtros por Categoría y Marca","[Precondiciones]
+1. Usuario ubicado en la pantalla de Catálogo.
+
+[Pasos de Ejecución]
+1. Escribir 'MacBook' en la barra de búsqueda y verificar coincidencia por nombre.
+2. Escribir 'titanio' para validar coincidencia en descripción técnica.
+3. Filtrar por categoría 'Smartphones' y luego por marca 'NVIDIA'.
+
+[Resultado Esperado]
+Los resultados se filtran al instante (0ms en cliente y SQL en API), cumpliendo precio_efectivo <= precio y stock_actual > 0.",High,Done,4,10,,"ELECTROTECH-TC11"
+24,Task,"TC12 - Validar Detalle Técnico del Producto y Búsqueda Sin Resultados","[Precondiciones]
+1. Catálogo cargado con productos activos.
+
+[Pasos de Ejecución]
+1. Hacer clic en 'Ver detalles' sobre cualquier tarjeta para abrir el modal técnico.
+2. Consultar un ID inexistente en API (/api/catalog/products/9999).
+3. Buscar el texto 'DispositivoInexistenteXYZ' en la barra del catálogo.
+
+[Resultado Esperado]
+El modal muestra especificaciones, calificación y stock (HTTP 200). El ID inexistente devuelve HTTP 404 y la búsqueda sin coincidencias muestra el estado vacío con el botón 'Limpiar filtros'.",Medium,Done,4,10,,"ELECTROTECH-TC12"
+25,Task,"TC13 - Validar Consolidación de Productos y Control de Cantidades en Carrito","[Precondiciones]
+1. Carrito vacío en sesión actual.
+
+[Pasos de Ejecución]
+1. Agregar 1 unidad de un producto al carrito y luego volver a agregar 2 unidades del mismo producto.
+2. Disminuir la cantidad a 1 unidad desde el control '-'.
+3. Pulsar el botón de eliminar (papelera).
+
+[Resultado Esperado]
+No se duplican filas (se consolida en cantidad = 3 con subtotal recalculado en backend), luego baja a 1 y finalmente queda en 0 ítems y total $0.00.",Highest,Done,5,11,,"ELECTROTECH-TC13"
+26,Task,"TC14 - Validar Restricciones de Stock, Cantidades Negativas e Ítem Inexistente","[Precondiciones]
+1. Producto ID 17 (GeForce RTX 5080 Founders) con stock_actual = 2.
+
+[Pasos de Ejecución]
+1. Intentar agregar producto ID 99999 (inexistente).
+2. Intentar agregar o actualizar una cantidad negativa (-2 o -5).
+3. Intentar agregar 99 unidades de GeForce RTX 5080 Founders (stock = 2).
+
+[Resultado Esperado]
+Producto inexistente retorna HTTP 404; cantidad negativa retorna HTTP 400; superar inventario disponible retorna HTTP 409 ('Stock insuficiente') y bloquea la acción en UI.",Highest,Done,5,11,,"ELECTROTECH-TC14"
+27,Task,"TC15 - Validar Checkout Transaccional y Descuento Real de Inventario","[Precondiciones]
+1. Usuario autenticado como Cliente (cliente@electrotech.pe).
+2. Producto ID 17 (stock inicial = 2, precio = $1,299.00) agregado al carrito.
+
+[Pasos de Ejecución]
+1. Ir a 'Mi Carrito' -> 'Ir a finalizar compra'.
+2. Ingresar dirección de envío ('Calle Real 640, Huancayo') y método de pago ('Tarjeta de Crédito').
+3. Hacer clic en 'Confirmar pedido'.
+
+[Resultado Esperado]
+POST /api/orders/checkout responde HTTP 201, genera código ET-*, calcula total en backend ($1,299.00) y descuenta el inventario en SQLite de 2 a 1 unidad.",Highest,Done,5,11,,"ELECTROTECH-TC15"
+28,Task,"TC16 - Validar Drawer Lateral de Carrito en Estados Cerrado, Vacío y Poblado","[Precondiciones]
+1. Usuario en cualquier vista (Inicio o Catálogo).
+
+[Pasos de Ejecución]
+1. Verificar que el drawer permanece oculto inicialmente.
+2. Hacer clic en 'Mi Carrito (0)' en la barra superior para abrir el drawer vacío.
+3. Cerrar, agregar 'GeForce RTX 5080 Founders' y validar apertura automática del drawer lateral.
+
+[Resultado Esperado]
+El drawer muestra estado vacío con botón 'Explorar catálogo'; con ítems muestra miniatura, controles -/+, stock, descuentos, total estimado y botón 'Ir a finalizar compra'. Evidencia: docs/screenshots/04_drawer_carrito.png",High,Done,5,11,,"ELECTROTECH-TC16"
+29,Task,"TC17 - Validar Footer Corporativo, Ubicación Huancayo y Teléfono +51 914356362","[Precondiciones]
+1. Usuario en cualquier vista de ELECTROTECH desplazado hasta el pie de página.
+
+[Pasos de Ejecución]
+1. Revisar el logotipo, enlaces rápidos (Inicio, Catálogo, Mi carrito, Contacto) y enlaces legales.
+2. Verificar la dirección física, el enlace telefónico y el texto legal de copyright.
+
+[Resultado Esperado]
+Muestra 'Calle Real 640, Huancayo · Lun–Sáb 09:00–20:00', enlace tel:+51914356362 ('+51 914356362'), sello 'Comercio electrónico verificado · Huancayo, Perú' y copyright 2026. Evidencia: docs/screenshots/02_testimonios_y_footer.png",Medium,Done,6,12,,"ELECTROTECH-TC17"
+30,Task,"TC18 - Validar Endpoints Dinámicos robots.txt y sitemap.xml","[Precondiciones]
+1. Servidor Express activo con categorías y productos en SQLite.
+
+[Pasos de Ejecución]
+1. Solicitar GET /robots.txt.
+2. Solicitar GET /sitemap.xml.
+
+[Resultado Esperado]
+robots.txt permite '/' y bloquea /api/admin/, /api/auth/, /api/cart/ y /api/orders/. sitemap.xml devuelve XML UTF-8 válido listando portada, categorías (?categoria=laptops) y productos (?producto=1).",Medium,Done,6,12,,"ELECTROTECH-TC18"
+31,Task,"TC19 - Validar Metadatos SEO, OpenGraph, Twitter Card y Schema.org JSON-LD","[Precondiciones]
+1. Archivo index.html y hook useDocumentSeo cargados.
+
+[Pasos de Ejecución]
+1. Inspeccionar las etiquetas <head> del documento HTML inicial.
+2. Abrir la ficha de un producto y verificar la actualización dinámica de metadatos.
+
+[Resultado Esperado]
+Contiene <title>, meta description, og:title, og:image, twitter:card='summary_large_image', preload de imagen hero y JSON-LD Store/WebSite (y Product + Offer al abrir detalles).",Medium,Done,6,12,,"ELECTROTECH-TC19"
+32,Task,"TC20 - Validar Estrategia de Carga de Imágenes (Eager/High vs Lazy/Async)","[Precondiciones]
+1. Pantalla de bienvenida renderizada.
+
+[Pasos de Ejecución]
+1. Inspeccionar atributos de las imágenes del Hero principal.
+2. Inspeccionar atributos de las imágenes de tarjetas inferiores y secciones secundarias.
+
+[Resultado Esperado]
+Las imágenes hero utilizan loading='eager' y fetchPriority='high' para optimizar LCP; las imágenes bajo el pliegue usan loading='lazy' y decoding='async'.",Medium,Done,6,12,,"ELECTROTECH-TC20"
+33,Bug,"B01 - Error SQL en /sitemap.xml por columna inexistente en tabla categorias (Resuelto)","[Descripción del Error]
+Durante las pruebas de integración SEO (TC18), la consulta SQL de buildSitemapXml solicitaba WHERE activo = 1 sobre la tabla categorias generando el error SQLite: no such column: activo.
+
+[Resolución Aplicada]
+Se corrigió la consulta en server/services/seoService.ts eliminando el filtro inexistente en categorias y usando created_at en productos. Verificado con HTTP 200 en /sitemap.xml y 20/20 pruebas aprobadas.",High,Done,6,,30,"ELECTROTECH-BugResuelto"

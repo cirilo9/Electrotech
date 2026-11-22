@@ -1,0 +1,6 @@
+{
+  "name": "ELECTROTECH",
+  "description": "Sistema web empresarial de comercialización de artefactos electrónicos con catálogo, carrito de compras transaccional, autenticación por roles y panel administrativo.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

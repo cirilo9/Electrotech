@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="es" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ELECTROTECH — Tienda de Tecnología y Hardware</title>
+    <meta
+      name="description"
+      content="Explora laptops, smartphones, OLED 4K y componentes de PC en ELECTROTECH. Stock en tiempo real, ofertas exclusivas y despacho seguro."
+    />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#080B16" />
+
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cdefs%3E%3ClinearGradient id='s' x1='4' y1='2' x2='36' y2='38' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0%25' stop-color='%2300E5FF'/%3E%3Cstop offset='55%25' stop-color='%233B82F6'/%3E%3Cstop offset='100%25' stop-color='%23A855F7'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M20 2.5L35 11.2V28.8L20 37.5L5 28.8V11.2L20 2.5Z' fill='%230D152E' stroke='url(%23s)' stroke-width='2'/%3E%3Cpath d='M22.2 9.5L13.2 21.3H19.4L17.4 30.5L26.8 18.5H20.4L22.2 9.5Z' fill='%2300F0FF'/%3E%3C/svg%3E"
+    />
+
+    <!-- OpenGraph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="ELECTROTECH" />
+    <meta property="og:locale" content="es_PE" />
+    <meta property="og:title" content="ELECTROTECH — Tienda de Tecnología y Hardware" />
+    <meta
+      property="og:description"
+      content="Explora laptops, smartphones, OLED 4K y componentes de PC en ELECTROTECH. Stock en tiempo real, ofertas exclusivas y despacho seguro."
+    />
+    <meta property="og:image" content="/src/assets/images/hero_electrotech_showroom_1795191996120.jpg" />
+    <meta
+      property="og:image:alt"
+      content="Showroom tecnológico ELECTROTECH con laptops, smartphones y televisores OLED"
+    />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="ELECTROTECH — Tienda de Tecnología y Hardware" />
+    <meta
+      name="twitter:description"
+      content="Explora laptops, smartphones, OLED 4K y componentes de PC en ELECTROTECH. Stock en tiempo real, ofertas exclusivas y despacho seguro."
+    />
+    <meta name="twitter:image" content="/src/assets/images/hero_electrotech_showroom_1795191996120.jpg" />
+
+    <!-- Preload critical LCP hero image and font origins -->
+    <link
+      rel="preload"
+      as="image"
+      href="/src/assets/images/hero_electrotech_showroom_1795191996120.jpg"
+      fetchpriority="high"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Store",
+            "name": "ELECTROTECH",
+            "description": "Sistema web profesional de comercialización de artefactos electrónicos: laptops, smartphones, televisores OLED, audio y componentes de PC.",
+            "image": "/src/assets/images/hero_electrotech_showroom_1795191996120.jpg",
+            "email": "contacto@electrotech.pe",
+            "telephone": "+51 914356362",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Calle Real 640",
+              "addressLocality": "Huancayo",
+              "addressRegion": "Junín",
+              "addressCountry": "PE"
+            },
+            "priceRange": "$$$"
+          },
+          {
+            "@type": "WebSite",
+            "name": "ELECTROTECH",
+            "inLanguage": "es",
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": "/?view=catalog&search={search_term_string}",
+              "query-input": "required name=search_term_string"
+            }
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body class="bg-[#080B16] text-white antialiased selection:bg-[#2563EB]/30 selection:text-white">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

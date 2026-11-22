@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Poppins", system-ui, sans-serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    background-color: #080B16;
+    color: #F8FAFC;
+    scroll-behavior: smooth;
+  }
+
+  h1, h2, h3, h4, .font-display {
+    font-family: var(--font-display);
+  }
+
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+.glass-surface {
+  background: linear-gradient(145deg, rgba(24, 35, 64, 0.78), rgba(13, 20, 40, 0.86));
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(56, 189, 248, 0.22);
+  box-shadow: 0 8px 30px rgba(2, 6, 23, 0.35);
+}
+
+.glass-surface-elevated {
+  background: linear-gradient(155deg, rgba(28, 41, 76, 0.88), rgba(15, 23, 46, 0.92));
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 229, 255, 0.32);
+  box-shadow: 0 18px 45px rgba(37, 99, 235, 0.18), 0 0 0 1px rgba(139, 92, 246, 0.12);
+}
+
+.card-surface {
+  background: linear-gradient(180deg, rgba(22, 33, 60, 0.92) 0%, rgba(14, 21, 41, 0.96) 100%);
+  border: 1px solid rgba(99, 130, 191, 0.22);
+  box-shadow: 0 10px 30px rgba(3, 7, 18, 0.4);
+}
+
+.card-surface:hover {
+  border-color: rgba(0, 229, 255, 0.42);
+  box-shadow: 0 14px 36px rgba(37, 99, 235, 0.18);
+}
+
+.btn-tech-primary {
+  background: linear-gradient(135deg, #2563EB 0%, #0EA5E9 55%, #00E5FF 100%);
+  color: #FFFFFF;
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.35);
+}
+
+.btn-tech-primary:hover {
+  background: linear-gradient(135deg, #1D4ED8 0%, #0284C7 50%, #06B6D4 100%);
+  box-shadow: 0 10px 28px rgba(0, 229, 255, 0.32);
+}
+
+.hero-title-gradient {
+  background: linear-gradient(100deg, #00F5FF 0%, #38BDF8 28%, #818CF8 58%, #C084FC 82%, #22D3EE 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 4px 20px rgba(0, 229, 255, 0.25));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
