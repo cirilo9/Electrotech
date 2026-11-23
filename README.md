@@ -3,27 +3,7 @@
 </div>
 
 ⚡ Electrotech — E-Commerce & Management Platform
-![CI Pipeline](https://github.com/electrotech/electrotech/actions/workflows/ci.yml/badge.svg)
-![React](https://img.shields.io/badge/React-18-blue.svg)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue)
-![Vite](https://img.shields.io/badge/Vite-5.0-646CFF)
-![Vitest](https://img.shields.io/badge/Tested%20with-Vitest-7852B0)
-Electrotech es una plataforma integral de comercio electrónico y gestión orientada al sector de tecnología y componentes informáticos. El proyecto combina una experiencia de usuario fluida e interactiva en la tienda con un panel de administración en tiempo real (Dashboard), respaldado por una sólida suite de pruebas QA y arquitectura lista para producción.
----
-🚀 Características Principales
-🛒 Plataforma E-Commerce (Cliente)
-Catálogo Interactivo: Filtrado y exploración por categorías (Laptops, Componentes PC, Audio, TVs, Tablets y Accesorios).
-Detalle de Producto: Modal enriquecido con especificaciones técnicas, precio y disponibilidad.
-Carrito de Compras (Drawer): Gestión dinámica de ítems, resumen de costos y proceso de checkout interactivo.
-Autenticación y Roles: Sistema de inicio de sesión diferenciado para clientes y administradores.
-📊 Dashboard de Administración
-Métricas e Indicadores KPI: Visualización de ventas, pedidos y stock en tiempo real.
-Gráficos Interactivos: Integración de gráficos mediante `Chart.js` y `react-chartjs-2`.
-Gestión de Productos e Inventario: Control de existencias e incorporación de nuevos productos.
-🧪 QA & Cobertura de Pruebas
-Pruebas Unitarias y de Integración: Cobertura integral con Vitest y React Testing Library.
-Generación de Reportes: Cobertura detallada almacenada en la carpeta `/coverage`.
-Documentación de Pruebas: Planes de prueba formato Jira/Confluence y reporte formal de errores y ejecuciones en `/docs`.
+
 ---
 🛠️ Stack Tecnológico
 Capa	Tecnología / Herramienta
