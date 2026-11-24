@@ -1,9 +1,9 @@
 
 
-⚡ Electrotech — E-Commerce & Management Platform
+ Electrotech — E-Commerce & Management Platform
 
 ---
-🛠️ Stack Tecnológico
+ Stack Tecnológico
 Capa	Tecnología / Herramienta
 Frontend Framework	React 18 + TypeScript
 Build Tool & Server	Vite / Bun
@@ -13,7 +13,7 @@ Base de Datos	SQLite (`electrotech.db`) / Script MySQL 8 (`database_mysql8.sql`)
 Testing	Vitest, React Testing Library
 Contenedorización & CI/CD	Docker, Docker Compose, GitHub Actions
 ---
-📁 Estructura del Proyecto
+ Estructura del Proyecto
 ```text
 electrotech/
 ├── .github/
@@ -40,13 +40,13 @@ electrotech/
 └── vite.config.ts
 ```
 ---
-💻 Requisitos Previos
+ Requisitos Previos
 Asegúrate de tener instalado en tu sistema:
 Node.js v18.0 o superior (o Bun)
 npm, pnpm o bun
 Docker y Docker Compose (opcional para despliegue en contenedores)
 ---
-⚡ Instalación y Configuración Local
+ Instalación y Configuración Local
 Clonar el repositorio:
 ```bash
    git clone https://github.com/tu-usuario/electrotech.git
@@ -71,7 +71,7 @@ Iniciar el servidor de desarrollo:
    ```
 La aplicación estará disponible en `http://localhost:5173`.
 ---
-🧪 Ejecución de Pruebas (QA)
+ Ejecución de Pruebas (QA)
 Para ejecutar la suite de pruebas unitarias y verificar el estado del código:
 Ejecutar pruebas en modo observador (Watch):
 ```bash
@@ -83,7 +83,7 @@ Generar reporte de cobertura:
   ```
 Los resultados del reporte de cobertura se guardan en la carpeta `/coverage` e incluyen archivos resumen en JSON e HTML.
 ---
-🐳 Despliegue con Docker
+ Despliegue con Docker
 Usando Docker Build y Run
 Construir la imagen de Docker:
 ```bash
